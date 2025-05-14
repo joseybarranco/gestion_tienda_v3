@@ -95,9 +95,9 @@ def product():
         app.db.productos.insert_one(diccionario_producto_nuevo)
     return render_template('añadir_productos.html')
 
-@app.route@('/productos')
+@app.route('/productos')
 def mostrar_productos():
-
+    global productos
     return render_template('productos.html', productos=productos)
 if __name__ == '__main__':
     app.run()

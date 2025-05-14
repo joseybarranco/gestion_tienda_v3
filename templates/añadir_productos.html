@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Productos</title>
-</head>
-<body>
+{% extends 'base.html' %}
+    <title>Añadir productos</title>
+
+{% block main %}
   <h1>Formulario para agregar productos a la lista:</h1>
   <form class="form-productos" method="POST">
     <label for="nombre">Nombre: </label>
@@ -17,5 +14,5 @@
     <input type="text" name="categoria" id="categoria">
     <button type="submit">Enviar</button>
   </form>
-</body>
-</html>
+{% endblock %}
+

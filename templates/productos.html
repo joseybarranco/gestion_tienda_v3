@@ -1,3 +1,35 @@
 {% extends 'base.html' %}
 
-{% block titulo %} Tienda Online - Productos {% endblock %}
+{% block titulo %} <h1>Tienda Online - Productos</h1> {% endblock %}
+
+{% block main %}
+
+<h3>Productos:</h3>
+    <!-- Tabla de los productos con un bucle para escribir la información de las filas y sus condicionales -->
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Categoría</th>
+    </tr>
+    {% for producto in productos %}
+        <tr>
+            <td>{{ producto['nombre'] }}</td>
+            <td>{{ producto['precio'] }}€</td>
+            {% if producto['stock'] == 0 %}
+                <td>Agotado</td>
+            {% else %}
+                <td>{{ producto['stock'] }}</td>
+            {% endif %}
+
+            <td>{{ producto['categoría'] }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan = '3'>TOTAL STOCK:</td>
+        <td>{{ total_stock }}</td>
+    </tr>
+</table>
+
+{% endblock %}

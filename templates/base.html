@@ -11,7 +11,9 @@
         {% endblock %}
     </header>
     <nav>
-        <a href ='{{ url_for('./dashboard')}}'> Inicio </a>
+        {% block nav %}
+
+        {% endblock %}
     </nav>
     <main>
         {% block main %}
