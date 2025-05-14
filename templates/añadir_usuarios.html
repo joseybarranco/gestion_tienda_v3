@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %} <h1>Tienda Online - Usuarios</h1> {% endblock %}
+
+{% block main %}
+ <h1>Formulario para agregar usuarios a la lista:</h1>
+  <form class="form-usuarios" method="POST">
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre">
+    <label for="email">E-mail: </label>
+    <input type="email" name="email" id="email">
+    <label for="contraseña">Contraseña: </label>
+    <input type="password" name="contraseña" id="contraseña">
+    <button type="submit">Enviar</button>
+  </form>
+{% endblock %}
