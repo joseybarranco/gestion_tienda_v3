@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base.html' %}
+{% block titulo %}
 
-    <title>Tienda Online</title>
-
-</head>
-<body>
     <h1>Tienda Online</h1>
+
+{% endblock %}
+
+{% block header %}
     <!-- Saludo al administrador -->
     <h2>Bienvenido, {{ nombre_admin }} a la tienda {{ tienda }}. Hoy es día {{ fecha }}.</h2>
+
+{% endblock %}
+{% block main %}
     <h3>Productos:</h3>
     <!-- Tabla de los productos con un bucle para escribir la información de las filas y sus condicionales -->
 <table>
@@ -87,5 +88,4 @@
         <td>{{ ingreso_total }}€</td>
     </tr>
 </table>
-</body>
-</html>
+{% endblock %}

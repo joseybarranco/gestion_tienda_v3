@@ -75,7 +75,7 @@ def dashboard():
                            cliente_max=cliente_max, ingreso_total=ingreso_total)
 
 
-@app.route('/productos', methods=['GET', 'POST'])
+@app.route('/añadir-productos', methods=['GET', 'POST'])
 def product():
     global productos
 
@@ -93,7 +93,7 @@ def product():
 
         productos.append(diccionario_producto_nuevo)
         app.db.productos.insert_one(diccionario_producto_nuevo)
-    return render_template('productos.html')
+    return render_template('añadir_productos.html')
 
 
 if __name__ == '__main__':
