@@ -12,7 +12,10 @@
     </header>
     <nav>
         {% block nav %}
-
+            <a href="{{ url_for('dashboard')}}">Inicio</a>
+            <a href="{{ url_for('añadir_productos')}}">Añadir Productos</a>
+            <a href="{{ url_for('mostrar_productos') }}">Productos</a>
+            <a href="{{ url_for('añadir_usuarios')}}">Añadir Usuarios</a>
         {% endblock %}
     </nav>
     <main>
