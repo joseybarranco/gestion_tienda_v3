@@ -1,20 +1,57 @@
 {% extends 'base.html' %}
 
-{% block titulo %} <h1>Tienda Online - Usuarios</h1> {% endblock %}
+{% block titulo %} Tienda Online - Usuarios {% endblock %}
 
 {% block main %}
- <h1>Formulario para agregar usuarios a la lista:</h1>
+{{ mensaje }}
+<table>
   <form class="form-usuarios" method="POST">
-    <label for="nombre">Nombre: </label>
-    <input type="text" name="nombre" id="nombre">
-    <label for="email">E-mail: </label>
-    <input type="email" name="email" id="email">
-    <label for="contraseña">Contraseña: </label>
-    <input type="password" name="contraseña" id="contraseña">
-    <label for="activo" >Activo</label>
-    <input type="text" name="activo" id="activo">
-    <label for="pedido">Pedidos: </label>
-    <input type="number" name="pedido" id="pedido">
-    <button type="submit">Enviar</button>
+    <thead>
+        <tr>
+            <th colspan="2">Formulario para agregar usuarios a la lista:</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><label for="nombre">Nombre: </label></td>
+            <td><input type="text" name="nombre" id="nombre"></td>
+        </tr>
+        <tr>
+            <td><label for="email">E-mail: </label></td>
+            <td><input type="email" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td><label for="contraseña">Contraseña: </label></td>
+            <td><input type="password" name="contraseña" id="contraseña"></td>
+        </tr>
+        <tr>
+            <td><p>Activo</p></td>
+            <td>
+                <label><input type="radio" checked name="activo" value="True">Verdadero</label>
+                <label><input type="radio" name="activo" value="False">Falso</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="pedidos">Pedidos: </label></td>
+            <td><input type="number" name="pedidos" id="pedidos"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Enviar</button></td>
+        </tr>
+    </tbody>
   </form>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

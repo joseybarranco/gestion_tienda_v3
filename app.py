@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime, date
 from pymongo import MongoClient
 from flask import Flask, render_template, request
 from models.usuario import Usuario
@@ -10,7 +10,7 @@ cliente = MongoClient('mongodb+srv://jbarrui587:6KWZHOFEh4LQdT1i@tutorial.vqartj
 app.db = cliente.gestion_tienda
 
 productos = [producto for producto in app.db.productos.find({})]
-clientes = [usuario for usuario in app.db.usuarios.find({})]
+users = [usuario for usuario in app.db.usuarios.find({})]
 
 pedidos = [
     {'cliente': 'Fran', 'total': 36.48, 'fecha': '24-10-2024'},
@@ -29,16 +29,16 @@ for producto in productos:
     total_stock += producto['stock']
 
 total_activos = 0
-for cliente in clientes:
-    if cliente['activo']:
+for user in users:
+    if  user['activo'] == "True":
         total_activos += 1
 
-cliente_max = ''
+user_max = ''
 pedido_max = 0
-for cliente in clientes:
-    if cliente['pedidos'] > pedido_max:
-        pedido_max = cliente['pedidos']
-        cliente_max = cliente['nombre']
+for user in users:
+    if user['pedidos'] > pedido_max:
+         pedido_max = user['pedidos']
+         user_max = user ['nombre']
 
 ingreso_total = 0
 for pedido in pedidos:
@@ -53,7 +53,7 @@ def index():
 @app.route('/dashboard')
 def dashboard():
     # Información en forma de variables para pasar a la plantilla html.
-
+    global total_activos
     nombre_admin = "Francisco"
     tienda = "TecnoMarket"
     fecha = date.today()
@@ -62,13 +62,12 @@ def dashboard():
 
     # Se devuelve a la plantilla con el return toda la información necesaria en la plantilla html.
     return render_template('dashboard.html', nombre_admin=nombre_admin, tienda=tienda, fecha=fecha, productos=productos,
-                           clientes=clientes, pedidos=pedidos, total_stock=total_stock, total_activos=total_activos,
-                           cliente_max=cliente_max, ingreso_total=ingreso_total)
+                           clientes=users, pedidos=pedidos, total_stock=total_stock, total_activos=total_activos,
+                           cliente_max=user_max, ingreso_total=ingreso_total)
 
 
 @app.route('/añadir-productos', methods=['GET', 'POST'])
 def añadir_productos():
-    global productos
 
     if request.method == 'POST':
         nombre_formulario = request.form.get('nombre')
@@ -91,19 +90,39 @@ def mostrar_productos():
     return render_template('productos.html', productos=productos, total_stock=total_stock)
 
 
-@app.route('/añadir-usuarios')
+@app.route('/añadir-usuarios', methods=['GET', 'POST'])
 def añadir_usuarios():
-    global clientes
-
+    mensaje=''
     if request.method == 'POST':
-        nombre_formulario = request.form.get('nombre')
+        fecha = date.today()
+        fecha_clase = datetime.combine(fecha, datetime.min.time())
+        nombre_usuario = request.form.get('nombre')
         email_formulario = request.form.get('email')
         contraseña_formulario = request.form.get('contraseña')
+        activo_formulario = request.form.get('activo')
+        pedidos_formulario = int(request.form.get('pedidos'))
+        dict_usuario = {
+            'nombre': nombre_usuario,
+            'email': email_formulario,
+            'contraseña': contraseña_formulario,
+            'activo': activo_formulario,
+            'pedidos': pedidos_formulario,
+            'fecha': fecha_clase
+        }
 
-        usuario = Usuario(nombre_formulario, email_formulario, contraseña_formulario, date.today())
-        app.db.usuarios.insert_one(usuario)
-    return render_template('añadir_usuarios.html')
+        usuario1 = Usuario(nombre_usuario, email_formulario, contraseña_formulario,activo_formulario, pedidos_formulario, fecha_clase )
+        usuario_dict=dict(usuario1.__dict__)
 
+        app.db.usuarios.insert_one(usuario_dict)
+        mensaje ='Usuario añadido Correctamente,!!!!!Enhorabuena¡¡¡¡¡'
+    return render_template('añadir_usuarios.html', mensaje=mensaje)
 
+@app.route('/usuarios')
+def mostrar_usuarios():
+    global users
+    global total_stock
+    global user_max
+
+    return render_template('usuarios.html', clientes=users, total_activos=total_activos, user_max=user_max)
 if __name__ == '__main__':
     app.run()

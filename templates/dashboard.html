@@ -41,33 +41,41 @@
     <h3>Clientes:</h3>
     <!-- Tabla de Clientes con un bucle y sus condicionales -->
 <table>
-    <tr>
-        <th>Nombre</th>
-        <th>E-mail</th>
-        <th>Activo</th>
-        <th>Pedidos</th>
-    </tr>
-    {% for cliente in clientes %}
+    <thead>
         <tr>
-            <td>{{ cliente['nombre'].upper() }}</td>
-            <td>{{ cliente['email'] }}</td>
-            {% if cliente['activo'] == True %}
-                <td>Sí</td>
-            {% else %}
-                <td>No</td>
-            {% endif %}
-            <td>{{ cliente['pedidos'] }}</td>
+            <th>Nombre</th>
+            <th>E-mail</th>
+            <th>Activo</th>
+            <th>Pedidos</th>
+            <th>fecha de registro</th>
         </tr>
-    {% endfor %}
-    <tr>
-        <td colspan = '3'>CLIENTES ACTIVOS:</td>
-        <td>{{ total_activos }}</td>
-    </tr>
-    <tr>
-        <td colspan = '3'>CLIENTE CON MÁS PEDIDOS:</td>
-        <td>{{ cliente_max.upper() }}</td>
-    </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente['nombre'].upper() }}</td>
+                <td>{{ cliente['email'] }}</td>
+                {% if cliente['activo'] == 'True' %}
+                    <td>Sí</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>{{ cliente['pedidos'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan = '3'>CLIENTES ACTIVOS:</td>
+            <td>{{ total_activos }}</td>
+        </tr>
+        <tr>
+            <td colspan = '3'>CLIENTE CON MÁS PEDIDOS:</td>
+            <td>{{ cliente_max.upper() }}</td>
+        </tr>
+    </tfoot>
 </table>
+
 <h3>Pedidos:</h3>
     <!-- Tabla de pedidos con un bucle para iterar la información -->
 <table>

@@ -3,7 +3,42 @@
 {% block titulo %} Titulo Online - Usuarios {% endblock %}
 
 {% block main %}
-
+<table>
+    <caption>USUARIOS</caption>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>E-mail</th>
+            <th>Activo</th>
+            <th>Pedidos</th>
+            <th>fecha de registro</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente['nombre'].upper() }}</td>
+                <td>{{ cliente['email'] }}</td>
+                {% if cliente['activo'] == 'True' %}
+                    <td>Sí</td>
+                {% else %}
+                    <td>No</td>
+                {% endif %}
+                <td>{{ cliente['pedidos'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan = '3'>CLIENTES ACTIVOS:</td>
+            <td>{{ total_activos }}</td>
+        </tr>
+        <tr>
+            <td colspan = '3'>CLIENTE CON MÁS PEDIDOS:</td>
+            <td>{{ user_max.upper() }}</td>
+        </tr>
+    </tfoot>
+</table>
 
 
 {% endblock %}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block titulo %} Tienda Online {% endblock %}</title>
+    <title>  {% block titulo %} Tienda Online {% endblock %}  </title>
 </head>
 <body>
     <header>
@@ -16,6 +16,7 @@
             <a href="{{ url_for('añadir_productos')}}">Añadir Productos</a>
             <a href="{{ url_for('mostrar_productos') }}">Productos</a>
             <a href="{{ url_for('añadir_usuarios')}}">Añadir Usuarios</a>
+            <a href="{{ url_for('mostrar_usuarios')}}">Usuarios</a>
         {% endblock %}
     </nav>
     <main>
