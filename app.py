@@ -120,9 +120,27 @@ def añadir_usuarios():
 @app.route('/usuarios')
 def mostrar_usuarios():
     global users
+    global total_activos
     global total_stock
     global user_max
 
     return render_template('usuarios.html', clientes=users, total_activos=total_activos, user_max=user_max)
+
+@app.route('/productos/<username>')
+def perfil_productos(username):
+    product_found = None
+    for elemento in app.db.productos.find({}):
+        if elemento['nombre'] == username:
+            product_found = elemento
+            break
+
+    if product_found:
+        return render_template('perfil_producto.html', product_found=product_found)
+
+    else:
+        return render_template('404.html')
+
+
+
 if __name__ == '__main__':
     app.run()

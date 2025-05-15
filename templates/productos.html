@@ -12,6 +12,7 @@
         <th>Precio</th>
         <th>Stock</th>
         <th>Categoría</th>
+        <th>Enlace</th>
     </tr>
     {% for producto in productos %}
         <tr>
@@ -24,6 +25,7 @@
             {% endif %}
 
             <td>{{ producto['categoría'] }}</td>
+            <td><a href="{{'perfil_productos',username=product_found}}">{{ producto['nombre'] }}</a></td>
         </tr>
     {% endfor %}
     <tr>
