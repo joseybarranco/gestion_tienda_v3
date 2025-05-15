@@ -10,7 +10,7 @@ cliente = MongoClient('mongodb+srv://jbarrui587:6KWZHOFEh4LQdT1i@tutorial.vqartj
 app.db = cliente.gestion_tienda
 
 productos = [producto for producto in app.db.productos.find({})]
-clientes = [ usuario for usuario in app.db.usuarios.find({})]
+clientes = [usuario for usuario in app.db.usuarios.find({})]
 
 pedidos = [
     {'cliente': 'Fran', 'total': 36.48, 'fecha': '24-10-2024'},
@@ -44,6 +44,7 @@ ingreso_total = 0
 for pedido in pedidos:
     ingreso_total += pedido['total']
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -51,7 +52,6 @@ def index():
 
 @app.route('/dashboard')
 def dashboard():
-
     # Información en forma de variables para pasar a la plantilla html.
 
     nombre_admin = "Francisco"
@@ -75,21 +75,21 @@ def añadir_productos():
         precio_formulario = float(request.form.get('precio'))
         stock_formulario = int(request.form.get('stock'))
         categoria_formulario = request.form.get('categoria')
-        diccionario_producto_nuevo ={
-            'nombre' : nombre_formulario,
-            'precio' : precio_formulario,
-            'stock' : stock_formulario,
-            'categoría' : categoria_formulario
+        diccionario_producto_nuevo = {
+            'nombre': nombre_formulario,
+            'precio': precio_formulario,
+            'stock': stock_formulario,
+            'categoría': categoria_formulario
         }
 
-        productos.append(diccionario_producto_nuevo)
         app.db.productos.insert_one(diccionario_producto_nuevo)
     return render_template('añadir_productos.html')
 
+
 @app.route('/productos')
 def mostrar_productos():
-
     return render_template('productos.html', productos=productos, total_stock=total_stock)
+
 
 @app.route('/añadir-usuarios')
 def añadir_usuarios():
@@ -103,5 +103,7 @@ def añadir_usuarios():
         usuario = Usuario(nombre_formulario, email_formulario, contraseña_formulario, date.today())
         app.db.usuarios.insert_one(usuario)
     return render_template('añadir_usuarios.html')
+
+
 if __name__ == '__main__':
     app.run()
