@@ -7,31 +7,37 @@
 <h3>Productos:</h3>
     <!-- Tabla de los productos con un bucle para escribir la información de las filas y sus condicionales -->
 <table>
-    <tr>
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Categoría</th>
-        <th>Enlace</th>
-    </tr>
-    {% for producto in productos %}
+    <thead>
         <tr>
-            <td>{{ producto['nombre'] }}</td>
-            <td>{{ producto['precio'] }}€</td>
-            {% if producto['stock'] == 0 %}
-                <td>Agotado</td>
-            {% else %}
-                <td>{{ producto['stock'] }}</td>
-            {% endif %}
-
-            <td>{{ producto['categoría'] }}</td>
-            <td><a href="{{url_for('perfil_productos',username=producto['nombre'])}}">{{ producto['nombre'] }}</a></td>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Enlace</th>
         </tr>
-    {% endfor %}
-    <tr>
-        <td colspan = '3'>TOTAL STOCK:</td>
-        <td>{{ total_stock }}</td>
-    </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td>{{ producto['nombre'] }}</td>
+                <td>{{ producto['precio'] }}€</td>
+                {% if producto['stock'] == 0 %}
+                    <td id="agotado">Agotado</td>
+                {% else %}
+                    <td>{{ producto['stock'] }}</td>
+                {% endif %}
+
+                <td>{{ producto['categoría'] }}</td>
+                <td><a href="{{url_for('perfil_productos',username=producto['nombre'])}}">{{ producto['nombre'] }}</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan = '3'>TOTAL STOCK:</td>
+            <td>{{ total_stock }}</td>
+        </tr>
+    </tfoot>
 </table>
 
 {% endblock %}

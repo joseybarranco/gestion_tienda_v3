@@ -3,5 +3,76 @@ table{
     margin: 0 auto;
 }
 table,td,th{
+    padding:10px;
+    text-align:center;
+    border: solid black ;
+    border-collapse:collapse;
+}
+thead{
+    background-color: aqua;
+}
+tbody{
+    background-color:khaki;
+    color:purple;
+}
+h1{
+    text-align:center;
+    font-size:50px;
+    color:green;
+}
+h3{
+    font-size: 30px;
+    color:blue;
+    text-align:center;
+}
+#agotado{
+    color:red;
+}
+footer{
+
+    align-item:center;
+    display:flex;
+    justify-content:space-evenly;
+    color:purple;
+    background-color:cadetblue
+}
+main{
+    margin:5%;
+}
+caption{
+    background-color:grey;
+    color:white;
+    font-size:30px;
+}
+#si{
+    color:green;
+}
+#no{
+    color:red;
+}
+nav{
+    display:flex;
+    border:solid red;
+    width:60%;
+    margin:0 auto;
+    justify-content:space-between;
+    border-radius:10px;
+    text-align:center;
+}
+nav a{
+    margin:auto;
+    text-decoration:none;
+    color:blue;
+    background-color:burlywood;
     border: solid black;
+    width:20%;
+    border-radius:10px;
+}
+nav a:hover{
+    background-color:white;
+    font-weight:bold;
+}
+label{
+    font-weight:bold;
+    color:purple;
 }

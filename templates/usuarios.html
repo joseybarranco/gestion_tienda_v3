@@ -25,17 +25,18 @@
                     <td>No</td>
                 {% endif %}
                 <td>{{ cliente['pedidos'] }}</td>
+                <td>{{ cliente['fecha_registro'] }}</td>
             </tr>
         {% endfor %}
     </tbody>
     <tfoot>
         <tr>
             <td colspan = '3'>CLIENTES ACTIVOS:</td>
-            <td>{{ total_activos }}</td>
+            <td colspan = '2'>{{ total_activos }}</td>
         </tr>
         <tr>
             <td colspan = '3'>CLIENTE CON MÁS PEDIDOS:</td>
-            <td>{{ user_max.upper() }}</td>
+            <td colspan = '2'>{{ user_max.upper() }}</td>
         </tr>
     </tfoot>
 </table>
