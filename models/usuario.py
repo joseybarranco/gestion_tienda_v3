@@ -1,5 +1,3 @@
-import datetime
-from datetime import date
 
 class Usuario:
     def __init__(self, nombre,  email, contraseña, activo, pedidos,fecha_registro):

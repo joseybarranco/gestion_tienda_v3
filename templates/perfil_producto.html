@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 
-{% block titulo %} {{ product_found }} {% endblock %}
+{% block titulo %} {{ product_found['nombre'] }} {% endblock %}
 
 {% block main %}
+<table>
+    <thead>
+        <tr>
+            <th>{{ product_found['nombre'] }}</th>
+        </tr>
 
+    </thead>
+    <tbody>
+        <tr>
+            <td>Nombre</td>
+            <td>{{ product_found['nombre'] }}</td>
+        </tr>
+        <tr>
+            <td>Precio</td>
+            <td>{{ product_found['precio'] }}</td>
+        </tr>
+        <tr>
+            <td>Stock</td>
+            <td>{{ product_found['stock'] }}</td>
+        </tr>
+        <tr>
+            <td>Categoríía</td>
+            <td>{{ product_found['categoría'] }}</td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}

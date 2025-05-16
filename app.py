@@ -87,6 +87,7 @@ def añadir_productos():
 
 @app.route('/productos')
 def mostrar_productos():
+
     return render_template('productos.html', productos=productos, total_stock=total_stock)
 
 
